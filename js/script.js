@@ -1,82 +1,47 @@
+// Selecionando elementos
 const form = document.querySelector("#formMensagem");
 const input = document.querySelector("#mensagem");
 const erro = document.querySelector("#erro");
 const lista = document.querySelector("#lista");
 
-// "Banco de dados" em memória (array)
+// Array para armazenar mensagens
 let mensagens = [];
 
-let editandoIndex = null;
-
+// Função para validar texto
 function validarTexto(texto) {
-  const txt = texto.trim();
-  return txt.length > 0;
+  if (texto.trim() === "") {
+    erro.textContent = "Texto não pode estar vazio!";
+    return false;
+  }
+
+  erro.textContent = "";
+  return true;
 }
 
-// Renderizando/mostrando a lista na tela
+// Função para renderizar lista
 function render() {
-  lista.innerHTML = "";
+  lista.textContent = "";
 
-  // <li> para cada mensagem
   for (let i = 0; i < mensagens.length; i++) {
     const li = document.createElement("li");
-    const span = document.createElement("span");
-    span.textContent = mensagens[i];
-
-    span.addEventListener("click", () => {
-      input.value = mensagens[i];
-      input.focus();
-      editandoIndex = i;
-
-      erro.textContent =
-        "Editando item " + (i + 1) + " (envie para salvar)";
-    });
-
-    const btnExcluir = document.createElement("button");
-    btnExcluir.type = "button";
-    btnExcluir.textContent = "Excluir";
-
-    btnExcluir.addEventListener("click", () => {
-      mensagens.splice(i, 1);
-      render();
-    });
-
-    li.append(span, " ", btnExcluir);
-    lista.append(li);
+    li.textContent = mensagens[i];
+    lista.appendChild(li);
   }
 }
 
-form.addEventListener("submit", (event) => {
+// Evento de submit
+form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const textoDigitado = input.value;
 
   if (!validarTexto(textoDigitado)) {
-    erro.textContent = "Texto não pode estar vazio!";
     return;
   }
 
-  erro.textContent = "";
-
-  const textoFinal = textoDigitado.trim();
-
-  if (editandoIndex !== null) {
-    mensagens[editandoIndex] = textoFinal;
-    editandoIndex = null;
-  } else {
-    mensagens.push(textoFinal);
-  }
+  mensagens.push(textoDigitado.trim());
 
   render();
 
   input.value = "";
 });
-
-function falar() {
-  const mensagem = mensagens.join(", ");
-  let utterance = new SpeechSynthesisUtterance(mensagem);
-  speechSynthesis.speak(utterance);
-}
-
-const botao = document.getElementById("btnFala");
-botao.addEventListener("click", falar);
