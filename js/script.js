@@ -29,19 +29,16 @@ function render() {
   }
 }
 
-// Evento de submit
+// Evento de input para atualizar lista ao digitar
+input.addEventListener("input", function () {
+  const texto = input.value;
+  mensagens = texto.split(',').map(item => item.trim()).filter(item => item !== "");
+  render();
+});
+
+// Evento de submit (opcional, pode remover se não quiser adicionar extra)
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const textoDigitado = input.value;
-
-  if (!validarTexto(textoDigitado)) {
-    return;
-  }
-
-  mensagens.push(textoDigitado.trim());
-
-  render();
-
-  input.value = "";
+  // Não faz nada extra, já atualiza ao digitar
 });
