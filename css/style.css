@@ -1,22 +1,250 @@
-body {
-    background-color: #dda0dd;
-    margin: 0;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    font-size: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 input {
-    width: 400px;
-    height: 50px;
-    padding: 10px;
-    font-size: 20px;
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
+
+input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+button {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.btn-excluir {
+  padding: 8px 16px;
+  background: #e74c3c;
+  color: white;
+  font-size: 12px;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.btn-excluir:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.btn-excluir:active {
+  transform: translateY(0);
+}
+
+.btn-editar {
+  padding: 8px 16px;
+  background: #f39c12;
+  color: white;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.btn-editar:hover {
+  background: #e67e22;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+}
+
+.btn-editar:active {
+  transform: translateY(0);
+}
+
+.btn-salvar {
+  padding: 8px 16px;
+  background: #27ae60;
+  color: white;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.btn-salvar:hover {
+  background: #229954;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
+}
+
+.btn-salvar:active {
+  transform: translateY(0);
+}
+
+.btn-cancelar {
+  padding: 8px 16px;
+  background: #95a5a6;
+  color: white;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.btn-cancelar:hover {
+  background: #7f8c8d;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(149, 165, 166, 0.3);
+}
+
+.btn-cancelar:active {
+  transform: translateY(0);
+}
+
+#msg {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #fadbd8;
+  border-left: 4px solid #e74c3c;
+  border-radius: 4px;
+  display: none;
+  animation: slideIn 0.3s ease;
+}
+
+#msg:not(:empty) {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#lista {
+  list-style: none;
+}
+
+li {
+  padding: 16px;
+  background: #f9f9f9;
+  border-left: 4px solid #667eea;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideIn 0.3s ease;
+}
+
+li:hover {
+  background: #f0f0f0;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#lista:empty::after {
+  content: "Nenhuma tarefa adicionada ainda.";
+  display: block;
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  #form {
+    flex-direction: column;
+  }
+
+  #form button {
+    width: 100%;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-excluir {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+} 

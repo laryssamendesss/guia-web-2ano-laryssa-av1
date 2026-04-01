@@ -1,38 +1,25 @@
-
- <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Guia Web</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<form id="formMensagem">
-  <label for="mensagem">Lista de tarefas:</label>
-  <input id="mensagem" type="text" />
-  <button type="submit">Adicionar</button>
-</form>
-
-<p id="erro"></p>
-
-<ul id="lista"></ul>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Botão com ação</title>
+  <meta charset="UTF-8">
+  <title>Lista de Tarefas</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<button onclick="alert('Você clicou!')">Clique aqui</button>
+  <div class="container">
+    <h1>Lista de Tarefas</h1>
 
-</body>
-</html>
+    <form id="form">
+      <input type="text" id="input" placeholder="Digite uma tarefa">
+      <button type="submit">Adicionar</button>
+    </form>
 
-</body>
-</html>
+    <p id="msg"></p>
 
+    <ul id="lista"></ul>
+  </div>
 
-
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
